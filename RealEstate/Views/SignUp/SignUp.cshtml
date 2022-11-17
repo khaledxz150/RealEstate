@@ -1,0 +1,103 @@
+﻿
+@model RealEstate.Models.Models.UserViewModel
+
+@{ 
+    ViewBag.Title = "SignUp";
+    Layout = "";
+}
+@*@{
+    ViewBag.Title = "SignUp";
+    Layout="";
+    var _dic = new RealEstate.Repository.DictionaryHelper();
+    _dic.GetWordsHelper("100");
+}*@
+
+<link href="~/Content/signup.css" rel="stylesheet" />
+
+@using (Html.BeginForm("SignUp", "SignUp", FormMethod.Post))
+{
+    <head>
+
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="col-lg-3">
+                <table>
+                    <tr>
+                        Sign Up!
+                    </tr>
+                    <tr>
+                        <td>@Html.NameFor(Model => Model.UserName)</td>
+                        <td>@Html.TextBoxFor(Model => Model.UserName)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.NameFor(Model => Model.Password)</td>
+                        <td>@Html.TextBoxFor(Model => Model.Password)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.NameFor(Model => Model.UserFirstNameEng)</td>
+                        <td>@Html.TextBoxFor(Model => Model.UserFirstNameEng)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.NameFor(Model => Model.UserLastNameEng)</td>
+                        <td>@Html.TextBoxFor(Model => Model.UserLastNameEng)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.NameFor(Model => Model.UserFirstNameAr)</td>
+                        <td>@Html.TextBoxFor(Model => Model.UserFirstNameAr)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.NameFor(Model => Model.UserLastNameAr)</td>
+                        <td>@Html.TextBoxFor(Model => Model.UserLastNameAr)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.NameFor(Model => Model.UserEmail)</td>
+                        <td>@Html.TextBoxFor(Model => Model.UserEmail)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.NameFor(Model => Model.PhoneNumber)</td>
+                        <td>@Html.TextBoxFor(Model => Model.PhoneNumber)</td>
+                    </tr>
+                    <tr>
+                        <td>Language</td>
+                        <td>
+                            @Html.DropDownList("LangID", new List<SelectListItem>
+                            {
+                                 new SelectListItem{Text="English",Value="1",Selected=true},
+                                 new SelectListItem{Text="Arabic",Value="2"}
+
+                            }, "Select Language", new { @class = "list" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Country</td>
+                        <td>
+                            @Html.DropDownList("CountryID", new List<SelectListItem>
+                            {
+                                 new SelectListItem{Text="Jordan",Value="1",Selected=true},
+                                 new SelectListItem{Text="UAE",Value="2"},
+                                 new SelectListItem{Text="USA",Value="3"}
+
+                            }, "Select Country", new { @class = "list" });
+
+                            @*@Html.DropDownList("Country",new List<SelectListItem>
+                       {
+                          Business.DataRetrieval.RealEstateRepository.GetCountry
+                       })*@
+                        </td>
+                    </tr>
+                    <tr>
+                       
+
+                </table>
+                <button type="submit" value="submit Form" class="submitButton" href="~/Views/Shared/_Layout.cshtml"> Submit</button>
+            </div>
+        </div>
+
+        @*<div class="container body-content">
+            @RenderBody()
+        </div>*@
+
+    </body>
+}

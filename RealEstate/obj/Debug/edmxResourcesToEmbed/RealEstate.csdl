@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RealEstateModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="AddressID" />
+    </Key>
+    <Property Name="AddressID" Type="Int32" Nullable="false" />
+    <Property Name="CityID" Type="Int32" Nullable="false" />
+    <Property Name="CountryID" Type="Int32" Nullable="false" />
+    <Property Name="AddressDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="City" Relationship="Self.FK__Address__CityID__30F848ED" FromRole="Address" ToRole="City" />
+    <NavigationProperty Name="Country" Relationship="Self.FK__Address__Country__31EC6D26" FromRole="Address" ToRole="Country" />
+    <NavigationProperty Name="Properties" Relationship="Self.FK__Property__Addres__440B1D61" FromRole="Address" ToRole="Property" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="CityID" />
+    </Key>
+    <Property Name="CityID" Type="Int32" Nullable="false" />
+    <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CountryID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Addresses" Relationship="Self.FK__Address__CityID__30F848ED" FromRole="City" ToRole="Address" />
+    <NavigationProperty Name="Country" Relationship="Self.FK__City__CountryID__2E1BDC42" FromRole="City" ToRole="Country" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryID" />
+    </Key>
+    <Property Name="CountryID" Type="Int32" Nullable="false" />
+    <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Addresses" Relationship="Self.FK__Address__Country__31EC6D26" FromRole="Country" ToRole="Address" />
+    <NavigationProperty Name="Cities" Relationship="Self.FK__City__CountryID__2E1BDC42" FromRole="Country" ToRole="City" />
+  </EntityType>
+  <EntityType Name="Dictionary">
+    <Key>
+      <PropertyRef Name="DictID" />
+    </Key>
+    <Property Name="DictID" Type="Int32" Nullable="false" />
+    <Property Name="LangID" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Language" Relationship="Self.FK__Dictionar__LangI__276EDEB3" FromRole="Dictionary" ToRole="Language" />
+  </EntityType>
+  <EntityType Name="Language">
+    <Key>
+      <PropertyRef Name="LangID" />
+    </Key>
+    <Property Name="LangID" Type="Int32" Nullable="false" />
+    <Property Name="LangName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Dictionaries" Relationship="Self.FK__Dictionar__LangI__276EDEB3" FromRole="Language" ToRole="Dictionary" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__User__LangID__38996AB5" FromRole="Language" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Layout">
+    <Key>
+      <PropertyRef Name="LayoutID" />
+    </Key>
+    <Property Name="LayoutID" Type="Int32" Nullable="false" />
+    <Property Name="SquareFootage" Type="Int32" Nullable="false" />
+    <Property Name="NoOfRooms" Type="Int32" Nullable="false" />
+    <Property Name="NoOfBathRooms" Type="Int32" Nullable="false" />
+    <Property Name="HasGarage" Type="Int32" />
+    <Property Name="HasPool" Type="Int32" />
+    <Property Name="HasBackyard" Type="Int32" />
+    <Property Name="ExtraFeature" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Properties" Relationship="Self.FK__Property__Layout__4222D4EF" FromRole="Layout" ToRole="Property" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Owner">
+    <Key>
+      <PropertyRef Name="OwnerID" />
+    </Key>
+    <Property Name="OwnerID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Owner__UserID__3D5E1FD2" FromRole="Owner" ToRole="User" />
+    <NavigationProperty Name="Properties" Relationship="Self.FK__Property__OwnerI__4316F928" FromRole="Owner" ToRole="Property" />
+  </EntityType>
+  <EntityType Name="Property">
+    <Key>
+      <PropertyRef Name="PropertyID" />
+    </Key>
+    <Property Name="PropertyID" Type="Int32" Nullable="false" />
+    <Property Name="PropertyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusID" Type="Int32" Nullable="false" />
+    <Property Name="TypeID" Type="Int32" Nullable="false" />
+    <Property Name="StartingPrice" Type="Int32" Nullable="false" />
+    <Property Name="LayoutID" Type="Int32" Nullable="false" />
+    <Property Name="OwnerID" Type="Int32" Nullable="false" />
+    <Property Name="AddressID" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Address" Relationship="Self.FK__Property__Addres__440B1D61" FromRole="Property" ToRole="Address" />
+    <NavigationProperty Name="Layout" Relationship="Self.FK__Property__Layout__4222D4EF" FromRole="Property" ToRole="Layout" />
+    <NavigationProperty Name="Owner" Relationship="Self.FK__Property__OwnerI__4316F928" FromRole="Property" ToRole="Owner" />
+    <NavigationProperty Name="Status" Relationship="Self.FK__Property__Status__403A8C7D" FromRole="Property" ToRole="Status" />
+    <NavigationProperty Name="Type" Relationship="Self.FK__Property__TypeID__412EB0B6" FromRole="Property" ToRole="Type" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="StatusID" />
+    </Key>
+    <Property Name="StatusID" Type="Int32" Nullable="false" />
+    <Property Name="CurrentStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Properties" Relationship="Self.FK__Property__Status__403A8C7D" FromRole="Status" ToRole="Property" />
+  </EntityType>
+  <EntityType Name="Type">
+    <Key>
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="TypeID" Type="Int32" Nullable="false" />
+    <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Properties" Relationship="Self.FK__Property__TypeID__412EB0B6" FromRole="Type" ToRole="Property" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="UserFirstNameEng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserLastNameEng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserFirstNameAr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserLastNameAr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LangID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Language" Relationship="Self.FK__User__LangID__38996AB5" FromRole="User" ToRole="Language" />
+    <NavigationProperty Name="Owners" Relationship="Self.FK__Owner__UserID__3D5E1FD2" FromRole="User" ToRole="Owner" />
+  </EntityType>
+  <Association Name="FK__Address__CityID__30F848ED">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityID" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Address__Country__31EC6D26">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Property__Addres__440B1D61">
+    <End Role="Address" Type="Self.Address" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="AddressID" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="AddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__City__CountryID__2E1BDC42">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="City" Type="Self.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Dictionar__LangI__276EDEB3">
+    <End Role="Language" Type="Self.Language" Multiplicity="1" />
+    <End Role="Dictionary" Type="Self.Dictionary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="LangID" />
+      </Principal>
+      <Dependent Role="Dictionary">
+        <PropertyRef Name="LangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User__LangID__38996AB5">
+    <End Role="Language" Type="Self.Language" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="LangID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="LangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Property__Layout__4222D4EF">
+    <End Role="Layout" Type="Self.Layout" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Layout">
+        <PropertyRef Name="LayoutID" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="LayoutID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Owner__UserID__3D5E1FD2">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Owner" Type="Self.Owner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Owner">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Property__OwnerI__4316F928">
+    <End Role="Owner" Type="Self.Owner" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Owner">
+        <PropertyRef Name="OwnerID" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="OwnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Property__Status__403A8C7D">
+    <End Role="Status" Type="Self.Status" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Property__TypeID__412EB0B6">
+    <End Role="Type" Type="Self.Type" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type">
+        <PropertyRef Name="TypeID" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RealEstateEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Addresses" EntityType="Self.Address" />
+    <EntitySet Name="Cities" EntityType="Self.City" />
+    <EntitySet Name="Countries" EntityType="Self.Country" />
+    <EntitySet Name="Dictionaries" EntityType="Self.Dictionary" />
+    <EntitySet Name="Languages" EntityType="Self.Language" />
+    <EntitySet Name="Layouts" EntityType="Self.Layout" />
+    <EntitySet Name="Logins" EntityType="Self.Login" />
+    <EntitySet Name="Owners" EntityType="Self.Owner" />
+    <EntitySet Name="Properties" EntityType="Self.Property" />
+    <EntitySet Name="Status" EntityType="Self.Status" />
+    <EntitySet Name="Types" EntityType="Self.Type" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__Address__CityID__30F848ED" Association="Self.FK__Address__CityID__30F848ED">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Address__Country__31EC6D26" Association="Self.FK__Address__Country__31EC6D26">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Property__Addres__440B1D61" Association="Self.FK__Property__Addres__440B1D61">
+      <End Role="Address" EntitySet="Addresses" />
+      <End Role="Property" EntitySet="Properties" />
+    </AssociationSet>
+    <AssociationSet Name="FK__City__CountryID__2E1BDC42" Association="Self.FK__City__CountryID__2E1BDC42">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="City" EntitySet="Cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Dictionar__LangI__276EDEB3" Association="Self.FK__Dictionar__LangI__276EDEB3">
+      <End Role="Language" EntitySet="Languages" />
+      <End Role="Dictionary" EntitySet="Dictionaries" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User__LangID__38996AB5" Association="Self.FK__User__LangID__38996AB5">
+      <End Role="Language" EntitySet="Languages" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Property__Layout__4222D4EF" Association="Self.FK__Property__Layout__4222D4EF">
+      <End Role="Layout" EntitySet="Layouts" />
+      <End Role="Property" EntitySet="Properties" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Owner__UserID__3D5E1FD2" Association="Self.FK__Owner__UserID__3D5E1FD2">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Owner" EntitySet="Owners" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Property__OwnerI__4316F928" Association="Self.FK__Property__OwnerI__4316F928">
+      <End Role="Owner" EntitySet="Owners" />
+      <End Role="Property" EntitySet="Properties" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Property__Status__403A8C7D" Association="Self.FK__Property__Status__403A8C7D">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Property" EntitySet="Properties" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Property__TypeID__412EB0B6" Association="Self.FK__Property__TypeID__412EB0B6">
+      <End Role="Type" EntitySet="Types" />
+      <End Role="Property" EntitySet="Properties" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,6 @@
+C:\Users\yaraa\OneDrive\Desktop\code\Core\obj\Debug\Core.csproj.AssemblyReference.cache
+C:\Users\yaraa\OneDrive\Desktop\code\Core\obj\Debug\Core.csproj.SuggestedBindingRedirects.cache
+C:\Users\yaraa\OneDrive\Desktop\code\Core\obj\Debug\Core.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\RealEstate\Core\obj\Debug\Core.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\RealEstate\Core\obj\Debug\Core.csproj.SuggestedBindingRedirects.cache
+C:\Users\user\Desktop\RealEstate\Core\obj\Debug\Core.csproj.CoreCompileInputs.cache

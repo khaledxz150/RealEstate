@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="52d56ddcf08b4f27a37e61d035113fa3" Name="Diagram1">
+        <EntityTypeShape EntityType="RealEstateModel.Address" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.City" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Country" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Dictionary" Width="1.5" PointX="3" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Language" Width="1.5" PointX="0.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Layout" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Login" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Owner" Width="1.5" PointX="5.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Property" Width="1.5" PointX="7.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Status" Width="1.5" PointX="5.25" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Type" Width="1.5" PointX="5.25" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.User" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
+        <AssociationConnector Association="RealEstateModel.FK__Address__CityID__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK__Address__Country__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK__Property__Addres__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK__City__CountryID__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK__Dictionar__LangI__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK__User__LangID__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK__Property__Layout__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK__Owner__UserID__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK__Property__OwnerI__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK__Property__Status__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK__Property__TypeID__412EB0B6" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

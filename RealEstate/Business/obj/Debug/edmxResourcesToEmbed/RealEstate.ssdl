@@ -1,0 +1,555 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RealEstateModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RealEstate.Localization.Dictionary' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Dictionary">
+    <Key>
+      <PropertyRef Name="DictID" />
+      <PropertyRef Name="LangID" />
+      <PropertyRef Name="Desc" />
+    </Key>
+    <Property Name="DictID" Type="int" Nullable="false" />
+    <Property Name="LangID" Type="int" Nullable="false" />
+    <Property Name="Desc" Type="nvarchar" MaxLength="1000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Language">
+    <Key>
+      <PropertyRef Name="LangID" />
+    </Key>
+    <Property Name="LangID" Type="int" Nullable="false" />
+    <Property Name="LangDesc" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Locolization">
+    <Key>
+      <PropertyRef Name="WordID" />
+    </Key>
+    <Property Name="WordID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="AddressID" />
+    </Key>
+    <Property Name="AddressID" Type="int" Nullable="false" />
+    <Property Name="CityID" Type="int" Nullable="false" />
+    <Property Name="CountryID" Type="int" Nullable="false" />
+    <Property Name="AddressDescription" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Longitude" Type="nchar" MaxLength="10" />
+    <Property Name="Latitude" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="CityID" />
+    </Key>
+    <Property Name="CityID" Type="int" Nullable="false" />
+    <Property Name="CityName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CountryID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryID" />
+    </Key>
+    <Property Name="CountryID" Type="int" Nullable="false" />
+    <Property Name="Country Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Layout">
+    <Key>
+      <PropertyRef Name="LayoutID" />
+    </Key>
+    <Property Name="LayoutID" Type="int" Nullable="false" />
+    <Property Name="SquareFootage" Type="int" Nullable="false" />
+    <Property Name="NoOfRooms" Type="int" Nullable="false" />
+    <Property Name="NoOfBathRooms" Type="int" Nullable="false" />
+    <Property Name="HasGarage" Type="int" />
+    <Property Name="HasPool" Type="int" />
+    <Property Name="HasBackyard" Type="int" Nullable="false" />
+    <Property Name="ExtraFeature" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OfferType">
+    <Key>
+      <PropertyRef Name="OfferTypeID" />
+    </Key>
+    <Property Name="OfferTypeID" Type="int" Nullable="false" />
+    <Property Name="OfferType" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Owner">
+    <Key>
+      <PropertyRef Name="OwnerID" />
+    </Key>
+    <Property Name="OwnerID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Property">
+    <Key>
+      <PropertyRef Name="PropertyID" />
+      <PropertyRef Name="LangID" />
+    </Key>
+    <Property Name="PropertyID" Type="int" Nullable="false" />
+    <Property Name="LangID" Type="int" Nullable="false" />
+    <Property Name="PropertyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="StatusID" Type="int" Nullable="false" />
+    <Property Name="TypeID" Type="int" Nullable="false" />
+    <Property Name="StartingPrice" Type="int" Nullable="false" />
+    <Property Name="LayoutID" Type="int" Nullable="false" />
+    <Property Name="OwnerID" Type="int" Nullable="false" />
+    <Property Name="AddressID" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="OfferTypeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="StatusID" />
+      <PropertyRef Name="LangID" />
+    </Key>
+    <Property Name="StatusID" Type="int" Nullable="false" />
+    <Property Name="LangID" Type="int" Nullable="false" />
+    <Property Name="CurrentStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Type">
+    <Key>
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="TypeID" Type="int" Nullable="false" />
+    <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LangID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="UserFirstNameEng" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserLastNameEng" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserFirstNameAr" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserLastNameAr" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PhoneNumber" Type="int" Nullable="false" />
+    <Property Name="LangID" Type="int" Nullable="false" />
+    <Property Name="AddressID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="UserTypeID" />
+      <PropertyRef Name="LangID" />
+    </Key>
+    <Property Name="UserTypeID" Type="int" Nullable="false" />
+    <Property Name="LangID" Type="int" Nullable="false" />
+    <Property Name="UserType" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="CategoryDesc" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Lookup">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Desc" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="ParentID" Type="int" />
+    <Property Name="DictID" Type="int" Nullable="false" />
+    <Property Name="LangID" Type="int" Nullable="false" />
+    <Property Name="SparseOne" Type="nvarchar" MaxLength="100" />
+    <Property Name="SparseTwo" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK__Dictionar__DictI__27C3E46E">
+    <End Role="Locolization" Type="Self.Locolization" Multiplicity="1" />
+    <End Role="Dictionary" Type="Self.Dictionary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Locolization">
+        <PropertyRef Name="WordID" />
+      </Principal>
+      <Dependent Role="Dictionary">
+        <PropertyRef Name="DictID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Dictionar__LangI__28B808A7">
+    <End Role="Language" Type="Self.Language" Multiplicity="1" />
+    <End Role="Dictionary" Type="Self.Dictionary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="LangID" />
+      </Principal>
+      <Dependent Role="Dictionary">
+        <PropertyRef Name="LangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Lookup__Category__56B3DD81">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Lookup">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Owner__UserID__3D5E1FD2">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Owner" Type="Self.Owner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Owner">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Property__Addres__440B1D61">
+    <End Role="Address" Type="Self.Address" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="AddressID" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="AddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Property__Layout__4222D4EF">
+    <End Role="Layout" Type="Self.Layout" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Layout">
+        <PropertyRef Name="LayoutID" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="LayoutID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Property__OwnerI__4316F928">
+    <End Role="Owner" Type="Self.Owner" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Owner">
+        <PropertyRef Name="OwnerID" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="OwnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Property__TypeID__412EB0B6">
+    <End Role="Type" Type="Self.Type" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type">
+        <PropertyRef Name="TypeID" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User__LangID__38996AB5">
+    <End Role="Language" Type="Self.Language" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="LangID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="LangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="City1" Type="Self.City" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityID" />
+      </Principal>
+      <Dependent Role="City1">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_City1">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="City1" Type="Self.City" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityID" />
+      </Principal>
+      <Dependent Role="City1">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_City2">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="City1" Type="Self.City" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityID" />
+      </Principal>
+      <Dependent Role="City1">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Login_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Login">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lookup_Locolization">
+    <End Role="Locolization" Type="Self.Locolization" Multiplicity="1" />
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Locolization">
+        <PropertyRef Name="WordID" />
+      </Principal>
+      <Dependent Role="Lookup">
+        <PropertyRef Name="DictID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Property_Language">
+    <End Role="Language" Type="Self.Language" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="LangID" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="LangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Property_OfferType">
+    <End Role="OfferType" Type="Self.OfferType" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OfferType">
+        <PropertyRef Name="OfferTypeID" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="OfferTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Status_Language">
+    <End Role="Language" Type="Self.Language" Multiplicity="1" />
+    <End Role="Status" Type="Self.Status" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="LangID" />
+      </Principal>
+      <Dependent Role="Status">
+        <PropertyRef Name="LangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Type_Language1">
+    <End Role="Language" Type="Self.Language" Multiplicity="1" />
+    <End Role="Type" Type="Self.Type" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="LangID" />
+      </Principal>
+      <Dependent Role="Type">
+        <PropertyRef Name="LangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Address">
+    <End Role="Address" Type="Self.Address" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="AddressID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="AddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="User1" Type="Self.User" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="User1">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserType_Language">
+    <End Role="Language" Type="Self.Language" Multiplicity="1" />
+    <End Role="UserType" Type="Self.UserType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="LangID" />
+      </Principal>
+      <Dependent Role="UserType">
+        <PropertyRef Name="LangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="DHelper" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="LangaugeID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetDropDownList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetProperty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PropertyID" Type="int" Mode="In" />
+    <Parameter Name="LangID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Login1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="Login">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SignUp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserFirstNameEng" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserLastNameEng" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserFirstNameAr" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserLastNameAr" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserEmail" Type="nvarchar" Mode="In" />
+    <Parameter Name="PhoneNumber" Type="int" Mode="In" />
+    <Parameter Name="Language" Type="int" Mode="In" />
+    <Parameter Name="Country" Type="int" Mode="In" />
+    <Parameter Name="City" Type="int" Mode="In" />
+    <Parameter Name="AddressDescription" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="RealEstateModelStoreContainer">
+    <EntitySet Name="Language" EntityType="Self.Language" Schema="Localization" store:Type="Tables" />
+    <EntitySet Name="Locolization" EntityType="Self.Locolization" Schema="Localization" store:Type="Tables" />
+    <EntitySet Name="Address" EntityType="Self.Address" Schema="R" store:Type="Tables" />
+    <EntitySet Name="City" EntityType="Self.City" Schema="R" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="R" store:Type="Tables" />
+    <EntitySet Name="Layout" EntityType="Self.Layout" Schema="R" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="R" store:Type="Tables" />
+    <EntitySet Name="OfferType" EntityType="Self.OfferType" Schema="R" store:Type="Tables" />
+    <EntitySet Name="Owner" EntityType="Self.Owner" Schema="R" store:Type="Tables" />
+    <EntitySet Name="Property" EntityType="Self.Property" Schema="R" store:Type="Tables" />
+    <EntitySet Name="Status" EntityType="Self.Status" Schema="R" store:Type="Tables" />
+    <EntitySet Name="Type" EntityType="Self.Type" Schema="R" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="R" store:Type="Tables" />
+    <EntitySet Name="UserType" EntityType="Self.UserType" Schema="R" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="S" store:Type="Tables" />
+    <EntitySet Name="Lookup" EntityType="Self.Lookup" Schema="S" store:Type="Tables" />
+    <EntitySet Name="Dictionary" EntityType="Self.Dictionary" store:Type="Tables" store:Schema="Localization">
+      <DefiningQuery>SELECT 
+    [Dictionary].[DictID] AS [DictID], 
+    [Dictionary].[LangID] AS [LangID], 
+    [Dictionary].[Desc] AS [Desc]
+    FROM [Localization].[Dictionary] AS [Dictionary]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Dictionar__DictI__27C3E46E" Association="Self.FK__Dictionar__DictI__27C3E46E">
+      <End Role="Locolization" EntitySet="Locolization" />
+      <End Role="Dictionary" EntitySet="Dictionary" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Dictionar__LangI__28B808A7" Association="Self.FK__Dictionar__LangI__28B808A7">
+      <End Role="Language" EntitySet="Language" />
+      <End Role="Dictionary" EntitySet="Dictionary" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Lookup__Category__56B3DD81" Association="Self.FK__Lookup__Category__56B3DD81">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Lookup" EntitySet="Lookup" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Owner__UserID__3D5E1FD2" Association="Self.FK__Owner__UserID__3D5E1FD2">
+      <End Role="User" EntitySet="User" />
+      <End Role="Owner" EntitySet="Owner" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Property__Addres__440B1D61" Association="Self.FK__Property__Addres__440B1D61">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Property__Layout__4222D4EF" Association="Self.FK__Property__Layout__4222D4EF">
+      <End Role="Layout" EntitySet="Layout" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Property__OwnerI__4316F928" Association="Self.FK__Property__OwnerI__4316F928">
+      <End Role="Owner" EntitySet="Owner" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Property__TypeID__412EB0B6" Association="Self.FK__Property__TypeID__412EB0B6">
+      <End Role="Type" EntitySet="Type" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User__LangID__38996AB5" Association="Self.FK__User__LangID__38996AB5">
+      <End Role="Language" EntitySet="Language" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_City" Association="Self.FK_City_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="City1" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_City1" Association="Self.FK_City_City1">
+      <End Role="City" EntitySet="City" />
+      <End Role="City1" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_City2" Association="Self.FK_City_City2">
+      <End Role="City" EntitySet="City" />
+      <End Role="City1" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Login_User" Association="Self.FK_Login_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Login" EntitySet="Login" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lookup_Locolization" Association="Self.FK_Lookup_Locolization">
+      <End Role="Locolization" EntitySet="Locolization" />
+      <End Role="Lookup" EntitySet="Lookup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Property_Language" Association="Self.FK_Property_Language">
+      <End Role="Language" EntitySet="Language" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Property_OfferType" Association="Self.FK_Property_OfferType">
+      <End Role="OfferType" EntitySet="OfferType" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Status_Language" Association="Self.FK_Status_Language">
+      <End Role="Language" EntitySet="Language" />
+      <End Role="Status" EntitySet="Status" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Type_Language1" Association="Self.FK_Type_Language1">
+      <End Role="Language" EntitySet="Language" />
+      <End Role="Type" EntitySet="Type" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Address" Association="Self.FK_User_Address">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_User" Association="Self.FK_User_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="User1" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserType_Language" Association="Self.FK_UserType_Language">
+      <End Role="Language" EntitySet="Language" />
+      <End Role="UserType" EntitySet="UserType" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
